@@ -6,8 +6,6 @@ from game.main import playAlone, playWithPartner
 from game.saveGameToFile import saveGameToFile
 from game.statistics import showStatistics
 
-# saveGameToFile(('María', 1, 0, 1, 0))
-
 print('===================\n Adivina el Número\n===================')
 
 def beginGame():
@@ -49,6 +47,5 @@ def beginGame():
     elif optionSelected == 4:
         print(f'\n{gameTitles[optionSelected]}')
         exit()
-    # wb.save('adivina_el_numero.xlsx')
 
 beginGame()        
