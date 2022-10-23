@@ -3,17 +3,10 @@
 
 from commons.menu import printMenu, printSubMenu
 from game.main import playAlone, playWithPartner
-import openpyxl
+from game.saveGameToFile import saveGameToFile
+from game.statistics import showStatistics
 
-wb = openpyxl.Workbook()
-activeSheet = wb.active
-a1 = activeSheet['A1']
-a1.value = 'Juego Adivina el Número Python Básico'
-a2 = activeSheet['A2']
-a2.value = ''
-activeSheet.append(('Jugador', 'Intentos', 'Dificultad', 'Fecha', 'Estatus del juego'))
-print(a1.value)
-
+# saveGameToFile(('María', 1, 0, 1, 0))
 
 print('===================\n Adivina el Número\n===================')
 
@@ -34,7 +27,8 @@ def beginGame():
         printSubMenu()
         result = playAlone()
             
-        # print(f'\n{result}\n')
+        print(f'\n{result}\n')
+        saveGameToFile(result)
         beginGame()
     elif optionSelected == 2:
         print(f'\n{gameTitles[optionSelected]}')
@@ -44,10 +38,14 @@ def beginGame():
             gessNumber = int(input('\nJugador #1. Por favor, indique el número a adivinar entre 1 y 1000: '))        
         printSubMenu()
         result = playWithPartner(gessNumber)
-        # print(f'\n{result}\n')
+
+        print(f'\n{result}\n')
+        saveGameToFile(result)
         beginGame()
     elif optionSelected == 3:
         print(f'\n{gameTitles[optionSelected]}')
+        showStatistics()
+        beginGame()
     elif optionSelected == 4:
         print(f'\n{gameTitles[optionSelected]}')
         exit()
