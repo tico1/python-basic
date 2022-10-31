@@ -9,5 +9,3 @@ class rgb():
     BLUE = (0, 0, 255)
     YELLOW = (255, 255, 0)
     MAGENTA = (255, 0, 255)
-
-# print(color_text("hello colored world", rgb.GREEN))

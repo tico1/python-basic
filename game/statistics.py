@@ -6,6 +6,7 @@ import pandas as pd
 file = 'game_stats.xlsx'
 fileExists = os.path.isfile(file)
 
+
 def showStatistics():
     if fileExists:
         wb = openpyxl.load_workbook(file)

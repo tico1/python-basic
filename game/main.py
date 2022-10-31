@@ -1,6 +1,6 @@
 from random import randrange
-from .gameProcess import buildGame
-from commons.color import color_text, rgb
+from commons.validateUserInput import validateUserInput
+from game.gameProcess import buildGame
 
 rangeByDifficulty = {
     1: range(1, 21),
@@ -8,13 +8,13 @@ rangeByDifficulty = {
     3: range(1, 6)
 }
 
-def playAlone():    
-    optionSelected = int(input(color_text('\nEscoja una de las opciones entre 1 y 3: ', rgb.MAGENTA)))
+
+def playAlone():
+    optionSelected = False
+    while not optionSelected:
+        optionSelected = validateUserInput([1, 3], 4)
     gessNumber = randrange(1, 1000)
-    while optionSelected not in range(1, 4):
-        print(color_text('\nOpción inválida \n', rgb.RED))
-        optionSelected = int(input(color_text('\nEscoja una de las opciones entre 1 y 3: ', rgb.MAGENTA)))
-    if optionSelected == 1:        
+    if optionSelected == 1:
         rangeNumberAttempts = rangeByDifficulty[optionSelected]
         return buildGame(gessNumber, rangeNumberAttempts)
     elif optionSelected == 2:
@@ -25,12 +25,11 @@ def playAlone():
         return buildGame(gessNumber, rangeNumberAttempts)
 
 
-def playWithPartner(gessNumber):    
-    optionSelected = int(input(color_text('\nJugador #2: Escoja una de las opciones entre 1 y 3: ', rgb.MAGENTA)))    
-    while optionSelected not in range(1, 4):
-        print(color_text('\nOpción inválida \n', rgb.RED))
-        optionSelected = int(input(color_text('\nEscoja una de las opciones entre 1 y 3: ', rgb.MAGENTA)))
-    if optionSelected == 1:        
+def playWithPartner(gessNumber):
+    optionSelected = False
+    while not optionSelected:
+        optionSelected = validateUserInput([1, 3], 4)
+    if optionSelected == 1:
         rangeNumberAttempts = rangeByDifficulty[optionSelected]
         return buildGame(gessNumber, rangeNumberAttempts)
     elif optionSelected == 2:

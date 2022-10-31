@@ -4,6 +4,7 @@ import openpyxl
 file = 'game_stats.xlsx'
 fileExists = os.path.isfile(file)
 
+
 def openExcelFile():
     if fileExists:
         wb = openpyxl.load_workbook(file)
@@ -29,29 +30,29 @@ def saveGameToFile(gameData):
     maxRow = activeSheet.max_row
     isPlayerNotRegistered = True
 
-    for row in range(6, maxRow+1):
-        if activeSheet.cell(row=row, column=1).value == gameData[0]: # player name
-            isPlayerNotRegistered = False                        
-            totalGames = activeSheet.cell(row=row, column=2).value # total games
+    for row in range(6, maxRow + 1):
+        if activeSheet.cell(row=row, column=1).value == gameData[0]:  # player name
+            isPlayerNotRegistered = False
+            totalGames = activeSheet.cell(row=row, column=2).value  # total games
             totalGames + 1
-            totalWins = activeSheet.cell(row=row, column=3).value # total wins
-            totalLoses = activeSheet.cell(row=row, column=4).value # total loses
+            totalWins = activeSheet.cell(row=row, column=3).value  # total wins
+            totalLoses = activeSheet.cell(row=row, column=4).value  # total loses
             if gameData[1] == 'Win':
-               totalWins + 1
+                totalWins + 1
             else:
                 totalLoses + 1
-            winnigPercentage = (totalWins / totalGames) * 100
-            activeSheet.cell(row=row, column=5).value = round(winningPercentage) # winnig percentage
+            winningPercentage = (totalWins / totalGames) * 100
+            activeSheet.cell(row=row, column=5).value = round(winningPercentage)  # winnig percentage
 
-            break        
+            break
     if isPlayerNotRegistered:
-        activeSheet.cell(row=maxRow+1, column=1).value = gameData[0] # player name
-        activeSheet.cell(row=maxRow+1, column=2).value = 1 # total games
+        activeSheet.cell(row=maxRow + 1, column=1).value = gameData[0]  # player name
+        activeSheet.cell(row=maxRow + 1, column=2).value = 1  # total games
         if gameData[1] == 'Win':
-            activeSheet.cell(row=maxRow+1, column=3).value = 1 # games won
-            activeSheet.cell(row=maxRow+1, column=5).value = 100 # winned percentage
+            activeSheet.cell(row=maxRow + 1, column=3).value = 1  # games won
+            activeSheet.cell(row=maxRow + 1, column=5).value = 100  # winned percentage
         else:
-            activeSheet.cell(row=maxRow+1, column=4).value = 1 # games lost
-            activeSheet.cell(row=maxRow+1, column=5).value = 0 # winned percentage
+            activeSheet.cell(row=maxRow + 1, column=4).value = 1  # games lost
+            activeSheet.cell(row=maxRow + 1, column=5).value = 0  # winned percentage
 
     wb.save(file)
